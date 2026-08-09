@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enquire | LG Store</title>
+  <meta name="description" content="Enquire about LG products, pricing, availability, or book an installation, repair or warranty service with LG Store.">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/Style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="logo"><a href="index.html">LG<span>Store</span></a></div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="products.html">Products &amp; Services</a></li>
+        <li><a href="enquiry.html" class="active">Enquire</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-intro">
+      <h1>Product &amp; Service Enquiry</h1>
+      <p>Ask about pricing, availability, or book an installation, repair or warranty service.</p>
+    </section>
+
+    <!-- ============ ENQUIRY FORM ============ -->
+    <!-- Note: form 'action' currently points to a placeholder. Client-side JS
+         validation and a submission response will be added in Part 3. -->
+    <section class="form-section">
+      <form action="#" method="post" id="enquiry-form">
+
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" name="full-name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="0821234567" required>
+
+        <label for="enquiry-type">Enquiry Type</label>
+        <select id="enquiry-type" name="enquiry-type" required>
+          <option value="">-- Select an option --</option>
+          <option value="product-info">Product Information / Pricing</option>
+          <option value="installation">Installation Booking</option>
+          <option value="repair">Repair / Service Booking</option>
+          <option value="warranty">Warranty Claim</option>
+        </select>
+
+        <label for="product-category">Product Category</label>
+        <select id="product-category" name="product-category">
+          <option value="">-- Select a category --</option>
+          <option value="tv">Televisions</option>
+          <option value="fridge">Fridges &amp; Freezers</option>
+          <option value="washer">Washing Machines</option>
+          <option value="aircon">Air Conditioning</option>
+          <option value="small-appliance">Small Appliances</option>
+        </select>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <fieldset>
+          <legend>Preferred Contact Method</legend>
+          <label><input type="radio" name="contact-method" value="email" checked> Email</label>
+          <label><input type="radio" name="contact-method" value="phone"> Phone</label>
+          <label><input type="radio" name="contact-method" value="whatsapp"> WhatsApp</label>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-col">
+      <h3>LG Store</h3>
+      <p>Your local authority on LG products and service since 2010.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products &amp; Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <p>Tel: 08 146 28415<br>Email: info@lgstore.co.za</p>
+    </div>
+    <p class="copyright">&copy; 2026 LG Store. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

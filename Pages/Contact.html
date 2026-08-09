@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | LG Store</title>
+  <meta name="description" content="Contact LG Store — find our store locations, opening hours, phone number and send us a message.">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/Style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="logo"><a href="index.html">LG<span>Store</span></a></div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="products.html">Products &amp; Services</a></li>
+        <li><a href="enquiry.html">Enquire</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-intro">
+      <h1>Contact Us</h1>
+      <p>We'd love to hear from you. Visit us, call us, or send a message below.</p>
+    </section>
+
+    <!-- ============ STORE LOCATIONS ============ -->
+    <section class="store-locations">
+      <h2>Our Stores</h2>
+      <div class="location-grid">
+        <article class="location-card">
+          <h3>LG Store — Sandton</h3>
+          <p>123 Rivonia Road, Sandton, Johannesburg, 2196</p>
+          <p>Tel: 011 000 0000</p>
+          <p>Mon–Fri: 08:00–17:00 | Sat: 09:00–14:00 | Sun: Closed</p>
+          <!-- Replace src with the actual embed URL for this store from Google Maps -->
+          <iframe
+            title="Map showing LG Store Sandton location"
+            src="https://maps.google.com/maps?q=Rivonia%20Road%2C%20Sandton%2C%20Johannesburg&output=embed"
+            width="100%" height="250" style="border:0;" loading="lazy">
+          </iframe>
+        </article>
+
+        <article class="location-card">
+          <h3>LG Store — Cape Town</h3>
+          <p>45 Bree Street, Cape Town City Centre, 8001</p>
+          <p>Tel: 021 000 0000</p>
+          <p>Mon–Fri: 08:00–17:00 | Sat: 09:00–14:00 | Sun: Closed</p>
+          <!-- Replace src with the actual embed URL for this store from Google Maps -->
+          <iframe
+            title="Map showing LG Store Cape Town location"
+            src="https://maps.google.com/maps?q=Bree%20Street%2C%20Cape%20Town&output=embed"
+            width="100%" height="250" style="border:0;" loading="lazy">
+          </iframe>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT FORM ============ -->
+    <section class="form-section">
+      <h2>Send Us a Message</h2>
+      <form action="#" method="post" id="contact-form">
+
+        <label for="c-full-name">Full Name</label>
+        <input type="text" id="c-full-name" name="full-name" required>
+
+        <label for="c-email">Email Address</label>
+        <input type="email" id="c-email" name="email" required>
+
+        <label for="c-phone">Phone Number</label>
+        <input type="tel" id="c-phone" name="phone" pattern="[0-9]{10}" placeholder="0821234567">
+
+        <label for="c-subject">Message Type</label>
+        <select id="c-subject" name="subject" required>
+          <option value="">-- Select an option --</option>
+          <option value="general">General Enquiry</option>
+          <option value="feedback">Feedback / Complaint</option>
+          <option value="careers">Careers</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="c-message">Your Message</label>
+        <textarea id="c-message" name="message" rows="5" required></textarea>
+
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-col">
+      <h3>LG Store</h3>
+      <p>Your local authority on LG products and service since 2010.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="products.html">Products &amp; Services</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <p>Tel: 08 146 28415<br>Email: info@lgstore.co.za</p>
+    </div>
+    <p class="copyright">&copy; 2026 LG Store. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
