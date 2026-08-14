@@ -17,6 +17,7 @@ CSS3
 Google Fonts
 Google Maps
 Project Structure
+
 LG-Store/
 ├── Index.html
 ├── CSS/
