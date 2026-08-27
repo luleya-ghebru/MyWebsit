@@ -1,9 +1,5 @@
 # LG Store — Website Project (WEDE5020)
 
-**Student Name:** [LULEYA]
-**Student Number:** [ST10523298]
-
-
 ## Project Overview
 
 LG Store is an independently owned retailer of branded LG electronics and home
@@ -103,4 +99,8 @@ https://www.w3.org/TR/WCAG22/ (Accessed: 3 August 2026).
 
 <!-- Add image source references here as you save each one, e.g.:
 Pexels (2026) Retail store manager in showroom. Available at: [URL]
+<<<<<<< HEAD
 (Accessed: [date]). -->
+=======
+(Accessed: [date]). -->
+>>>>>>> a77502f36d75dcef667647982a3c53d849497fda
