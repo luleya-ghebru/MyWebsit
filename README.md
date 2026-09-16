@@ -1,14 +1,12 @@
 # LG Store — Website Project (WEDE5020)
 
+
+
+
+**Module:** Web Development (Introduction) — WEDE5020
 **Student Name:** [Luleya]
 **Student Number:** [ST10523298]
 
-# LG Store — Website Project (WEDE5020)
-
-**Module:** Web Development (Introduction) — WEDE5020
-**Student Name:** [Your Full Name]
-**Student Number:** [Your Student Number]
-**Group:** [If applicable]
 
 ---
 
