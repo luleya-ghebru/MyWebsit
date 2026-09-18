@@ -1,8 +1,8 @@
 /* =========================================================
    LG STORE — STYLESHEET
-   Base styles for Part 1. Full layout, typography scale,
-   pseudo-classes and responsive breakpoints are built out
-   in Part 2 per the module rubric.
+   Part 2: Full layout, responsive design with breakpoints
+   for tablet and mobile, typography scale, and interactive
+   pseudo-classes.
    ========================================================= */
 
 /* ---- Colour palette (light pink / dark pink theme) ---- */
@@ -21,6 +21,10 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -28,6 +32,8 @@ body {
   background-color: var(--color-neutral-light);
   line-height: 1.6;
   text-align: center;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 h1, h2, h3 {
@@ -49,6 +55,11 @@ img {
   margin-right: auto;
 }
 
+/* ---- Lists: remove bullets site-wide ---- */
+ul {
+  list-style-type: none;
+}
+
 /* ---- Header / Navigation ---- */
 .site-header {
   display: flex;
@@ -57,6 +68,7 @@ img {
   padding: 1em 2em;
   background-color: var(--color-white);
   border-bottom: 2px solid var(--color-primary);
+  flex-wrap: wrap;
 }
 
 .logo a {
@@ -72,7 +84,7 @@ img {
 
 .main-nav ul {
   display: flex;
-  list-style: none;
+  flex-wrap: wrap;
   gap: 1.5em;
   justify-content: center;
 }
@@ -102,10 +114,21 @@ img {
   color: var(--color-white);
 }
 
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--color-dark-pink);
+}
+
 .btn-secondary {
   background-color: transparent;
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 /* ---- Hero ---- */
@@ -154,6 +177,15 @@ main section {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* ---- Value proposition list ---- */
+.value-prop ul {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-top: 1em;
+  text-align: center;
 }
 
 /* ---- Category / Product / Team cards ---- */
@@ -253,6 +285,7 @@ main section {
 .location-card iframe {
   margin-top: 1em;
   border-radius: 8px;
+  width: 100%;
 }
 
 /* ---- Forms ---- */
@@ -281,6 +314,12 @@ main section {
   border: 1px solid var(--color-primary);
   border-radius: 4px;
   font-family: 'Roboto', sans-serif;
+}
+
+.form-section input:focus,
+.form-section select:focus,
+.form-section textarea:focus {
+  outline: 2px solid var(--color-dark-pink);
 }
 
 .form-section fieldset {
@@ -324,10 +363,6 @@ main section {
   color: var(--color-white);
 }
 
-.site-footer ul {
-  list-style: none;
-}
-
 .site-footer a {
   color: var(--color-neutral-light);
 }
@@ -338,4 +373,95 @@ main section {
   padding-top: 2em;
   font-size: 0.85em;
   color: #f0c9d9;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN — BREAKPOINTS
+   Tablet: max-width 768px
+   Mobile: max-width 480px
+   ========================================================= */
+
+/* ---- Tablet ---- */
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0.75em;
+    font-size: 0.95em;
+    width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 1.6em;
+  }
+
+  .category-grid,
+  .team-grid,
+  .location-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .category-card,
+  .team-member,
+  .location-card {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .mission-vision {
+    flex-direction: column;
+  }
+
+  main section {
+    padding: 2em 1em;
+  }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 480px) {
+  .logo a {
+    font-size: 1.2em;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0.75em;
+  }
+
+  .hero {
+    padding: 2em 1em;
+  }
+
+  .hero-content h1 {
+    font-size: 1.4em;
+  }
+
+  .hero-content p {
+    font-size: 0.95em;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    margin: 0.5em 0;
+  }
+
+  .product-card {
+    padding: 1em;
+  }
+
+  .form-section form {
+    padding: 1.5em;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    text-align: center;
+  }
 }
