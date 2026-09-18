@@ -1,12 +1,9 @@
 # LG Store — Website Project (WEDE5020)
 
-
-
-
 **Module:** Web Development (Introduction) — WEDE5020
-**Student Name:** [Luleya]
-**Student Number:** [ST10523298]
-
+**Student Name:** [Your Full Name]
+**Student Number:** [Your Student Number]
+**Group:** [If applicable]
 
 ---
 
@@ -83,9 +80,10 @@ consumer experience.
 - **Contact** — store locations (Sandton and Cape Town), maps, opening
   hours, and a general contact form.
 - *(Planned for later phases: shopping cart/checkout, blog/resource section,
-  admin panel, live JavaScript form validation, deployment.)*
+  admin panel, live JavaScript form validation, SEO, deployment.)*
 
----
+---<img width="467" height="840" alt="image" src="https://github.com/user-attachments/assets/4b236f5f-e481-44bb-b5eb-b554da1446d3" />
+
 
 ## Timeline and Milestones
 
@@ -101,9 +99,9 @@ consumer experience.
 
 ---
 
-## Part 1 Details — Building the Foundation
+## Part 1 — Building the Foundation
 
-Part 1 covers project initiation, planning and the HTML foundation of the
+Part 1 covered project initiation, planning and the HTML foundation of the
 website.
 
 **Completed in this phase:**
@@ -117,13 +115,55 @@ website.
   `section`, `article` and `footer`.
 - Consistent navigation menu linking all five pages.
 - Basic content (headings, paragraphs, images, lists, forms) added to each
-  page per the sitemap below.
+  page.
 - File and folder naming corrected to lowercase, no-space conventions
-  following Part 1 feedback (see Changelog).
+  following Part 1 feedback.
 
-*(Part 2 and Part 3 sections — CSS styling, responsive design, JavaScript
-functionality, SEO and deployment — will be added to this README in future
-submissions.)*
+---
+
+## Part 2 — Designing the Visuals: CSS Styling and Responsive Design
+
+Part 2 covered working through Part 1 feedback and building the full visual
+design of the website with CSS.
+
+**Completed in this phase:**
+- Created an external stylesheet (`css/style.css`) and linked it to all five
+  HTML pages.
+- Established a base style: colour palette (light pink `#FCE4EC` and dark
+  pink `#880E4F`/`#C2185B` theme), typography using Google Fonts
+  (Montserrat for headings, Roboto for body text), and a CSS reset for
+  cross-browser consistency.
+- Applied layout structure using **Flexbox** for the header, navigation,
+  category/product/team card grids, footer columns, and form sections.
+- Styled all page elements decoratively (colours, borders, border-radius,
+  spacing) and centre-aligned page content per feedback.
+- Removed default bullet points from lists and re-styled them as clean,
+  centred text lists.
+- Added interactive **pseudo-classes** (`:hover`, `:focus`) on buttons, nav
+  links and form fields.
+- Implemented **responsive design** with two breakpoints:
+  - **Tablet** (`max-width: 768px`) — header stacks, navigation becomes a
+    vertical list, category/team/location cards switch to single column,
+    mission/vision section stacks.
+  - **Mobile** (`max-width: 480px`) — navigation and footer stack fully,
+    hero text and buttons resize for smaller screens, buttons become
+    full-width.
+- Used relative units (`em`) for spacing/typography and `%`/`max-width` for
+  responsive images.
+- Fixed a horizontal-scroll bug on mobile by adding `overflow-x: hidden` to
+  the page.
+- Tested the live site (deployed via Netlify) across desktop, tablet and
+  mobile viewport sizes using browser developer tools.
+
+### Screenshot Evidence — Responsive Design
+
+**Mobile view (Home page):**
+
+![Mobile view of LG Store home page](assets/screenshots/mobile-home.png)
+
+**Tablet view (About page):**
+
+![Tablet view of LG Store about page](assets/screenshots/tablet-about.png)
 
 ---
 
@@ -159,15 +199,16 @@ Home (index.html)
 
 ```
 lg-store/
-├── assets/           → all website images
+├── assets/
+│   └── screenshots/    → responsive design evidence (mobile, tablet)
 ├── css/
-│   └── style.css      → external stylesheet
+│   └── style.css        → external stylesheet
 ├── pages/
 │   ├── about.html
 │   ├── products.html
 │   ├── enquiry.html
 │   └── contact.html
-├── index.html          → homepage (root)
+├── index.html            → homepage (root)
 └── README.md
 ```
 
@@ -179,12 +220,15 @@ lg-store/
 |---|---|---|
 | [Date] | Initial commit | Project folder structure created (`assets`, `css`, `pages`). |
 | [Date] | Added HTML pages | Created `index.html`, `pages/about.html`, `pages/products.html`, `pages/enquiry.html`, `pages/contact.html` with semantic HTML5 structure and navigation. |
-| [Date] | Added base stylesheet | Linked `style.css` to all pages with colour palette (LG Red, Charcoal, Light Grey) and font variables (Montserrat, Roboto). |
-| [Date] | Fixed image paths | Corrected relative asset paths across all pages after initial broken links. |
-| [Date] | Fixed file/folder naming per Part 1 feedback | Renamed folders and files to lowercase, no-space conventions (`Assests` → `assets`, `CSS`/`Style.css` → `css`/`style.css`, `Pages`/`Index.html` → `pages`/`index.html`) to comply with proper naming conventions. Updated all internal links and image paths to match. |
+| [Date] | Added base stylesheet | Linked `style.css` to all pages with colour palette and font variables. |
+| [Date] | Fixed image paths | Corrected relative asset paths across all pages. |
+| [Date] | Fixed file/folder naming per Part 1 feedback | Renamed folders and files to lowercase, no-space conventions. Updated all internal links and image paths to match. |
+| [Date] | Applied Part 2 CSS styling | Built full Flexbox layout, typography scale, pink colour theme, and pseudo-class interactivity across all pages. |
+| [Date] | Added responsive design | Implemented tablet (768px) and mobile (480px) breakpoints; fixed horizontal-scroll overflow bug; removed list bullets and centred content per feedback. |
+| [Date] | Deployed to Netlify | Site published for live testing across desktop, tablet and mobile viewports. |
 
-*(Update this table with every future commit — date, short change title, and a
-description detailed enough for the lecturer to follow your progress.)*
+*(Update this table with every future commit — date, short change title, and
+a description detailed enough for the lecturer to follow your progress.)*
 
 ---
 
