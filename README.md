@@ -81,8 +81,12 @@ consumer experience.
   hours, and a general contact form.
 - *(Planned for later phases: shopping cart/checkout, blog/resource section,
   admin panel, live JavaScript form validation, SEO, deployment.)*
+<<<<<<< HEAD
+=======
 
----
+
+>>>>>>> e33034c1a3269d57a7a3b9c7dca29fbb920bdeb3
+
 
 ## Timeline and Milestones
 
@@ -117,6 +121,7 @@ website.
   page.
 - File and folder naming corrected to lowercase, no-space conventions
   following Part 1 feedback.
+<<<<<<< HEAD
 
 ---
 
@@ -163,6 +168,56 @@ design of the website with CSS.
 **Tablet view (About page):**
 
 ![Tablet view of LG Store about page](assets/screenshots/tablet-about.png)
+=======
+
+---
+
+## Part 2 — Designing the Visuals: CSS Styling and Responsive Design
+
+Part 2 covered working through Part 1 feedback and building the full visual
+design of the website with CSS.
+
+**Completed in this phase:**
+- Created an external stylesheet (`css/style.css`) and linked it to all five
+  HTML pages.
+- Established a base style: colour palette (light pink `#FCE4EC` and dark
+  pink `#880E4F`/`#C2185B` theme), typography using Google Fonts
+  (Montserrat for headings, Roboto for body text), and a CSS reset for
+  cross-browser consistency.
+- Applied layout structure using **Flexbox** for the header, navigation,
+  category/product/team card grids, footer columns, and form sections.
+- Styled all page elements decoratively (colours, borders, border-radius,
+  spacing) and centre-aligned page content per feedback.
+- Removed default bullet points from lists and re-styled them as clean,
+  centred text lists.
+- Added interactive **pseudo-classes** (`:hover`, `:focus`) on buttons, nav
+  links and form fields.
+- Implemented **responsive design** with two breakpoints:
+  - **Tablet** (`max-width: 768px`) — header stacks, navigation becomes a
+    vertical list, category/team/location cards switch to single column,
+    mission/vision section stacks.
+  - **Mobile** (`max-width: 480px`) — navigation and footer stack fully,
+    hero text and buttons resize for smaller screens, buttons become
+    full-width.
+- Used relative units (`em`) for spacing/typography and `%`/`max-width` for
+  responsive images.
+- Fixed a horizontal-scroll bug on mobile by adding `overflow-x: hidden` to
+  the page.
+- Tested the live site (deployed via Netlify) across desktop, tablet and
+  mobile viewport sizes using browser developer tools.
+
+### Screenshot Evidence — Responsive Design
+
+**Mobile view (Home page):**
+
+<img width="467" height="840" alt="image" src="https://github.com/user-attachments/assets/228d72e4-5574-45eb-a5d0-d2b048a74277" />
+
+
+**Tablet view (About page):**
+
+<img width="1000" height="812" alt="image" src="https://github.com/user-attachments/assets/188a00c3-0e2a-43c2-acff-100c28394bfb" />
+
+>>>>>>> e33034c1a3269d57a7a3b9c7dca29fbb920bdeb3
 
 ---
 
