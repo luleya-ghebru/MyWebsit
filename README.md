@@ -82,7 +82,7 @@ consumer experience.
 - *(Planned for later phases: shopping cart/checkout, blog/resource section,
   admin panel, live JavaScript form validation, SEO, deployment.)*
 
----<img width="467" height="840" alt="image" src="https://github.com/user-attachments/assets/4b236f5f-e481-44bb-b5eb-b554da1446d3" />
+
 
 
 ## Timeline and Milestones
@@ -159,11 +159,13 @@ design of the website with CSS.
 
 **Mobile view (Home page):**
 
-![Mobile view of LG Store home page](assets/screenshots/mobile-home.png)
+<img width="467" height="840" alt="image" src="https://github.com/user-attachments/assets/228d72e4-5574-45eb-a5d0-d2b048a74277" />
+
 
 **Tablet view (About page):**
 
-![Tablet view of LG Store about page](assets/screenshots/tablet-about.png)
+<img width="1000" height="812" alt="image" src="https://github.com/user-attachments/assets/188a00c3-0e2a-43c2-acff-100c28394bfb" />
+
 
 ---
 
