@@ -1,7 +1,3 @@
-# robots.txt - tells search engine crawlers which pages they may index
-# (Google, n.d.)
 User-agent: *
 Allow: /
-
-# Location of the XML sitemap (replace with YOUR live URL after deployment)
-Sitemap: https://YOUR-SITE-NAME.netlify.app/sitemap.xml
+Sitemap: https://guileless-monstera-308321.netlify.app/sitemap.xml

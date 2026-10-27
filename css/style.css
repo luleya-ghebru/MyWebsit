@@ -465,3 +465,61 @@ main section {
     text-align: center;
   }
 }
+/* =========================================================
+   PART 3 ADDITIONS - paste at the very bottom of css/style.css
+   ========================================================= */
+
+/* Scroll-reveal animation */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* Product search / filter / sort */
+.product-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75em; margin: 1.5em 0 1em; }
+.product-controls input, .product-controls select {
+  padding: 0.65em; border: 1px solid var(--color-primary); border-radius: 4px;
+  font-family: 'Roboto', sans-serif; background: var(--color-white);
+}
+.product-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5em; margin-top: 1.5em; }
+.product-grid .product-card { flex: 1 1 240px; max-width: 280px; margin: 0; }
+.product-grid .product-card img { width: 100%; height: 160px; }
+.stock { font-size: 0.9em; font-weight: 700; }
+
+/* Accordion FAQ */
+.faq-list { max-width: 700px; margin: 1.5em auto 0; text-align: left; }
+.faq-item { background: var(--color-white); border-radius: 8px; margin-bottom: 0.75em; overflow: hidden; }
+.faq-question {
+  width: 100%; padding: 1em 1.25em; border: none; background: none; cursor: pointer;
+  font: 700 1em 'Montserrat', sans-serif; color: var(--color-primary); text-align: left;
+}
+.faq-question::after { content: '+'; float: right; }
+.faq-question[aria-expanded="true"]::after { content: '\2212'; }
+.faq-question:hover, .faq-question:focus { background: var(--color-neutral-light); }
+.faq-answer { padding: 0 1.25em 1em; }
+
+/* Gallery + lightbox */
+.gallery-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1em; margin-top: 1.5em; }
+.gallery-grid img { width: 220px; height: 160px; object-fit: cover; cursor: zoom-in; transition: transform 0.2s; }
+.gallery-grid img:hover { transform: scale(1.05); }
+.lightbox {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: none;
+  flex-direction: column; align-items: center; justify-content: center; z-index: 1000; padding: 1em;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90%; max-height: 75vh; border-radius: 8px; }
+.lightbox p { color: var(--color-white); margin-top: 0.75em; }
+.lightbox-close { position: absolute; top: 1rem; right: 1.5rem; background: none; border: none; color: #fff; font-size: 2.5rem; cursor: pointer; }
+
+/* Map */
+#map { height: 380px; max-width: 900px; margin: 1.5em auto 0; border-radius: 8px; z-index: 1; }
+.map-buttons { margin-top: 1em; }
+
+/* Form errors and responses */
+.field-error { color: #b3261e; font-size: 0.85em; min-height: 1em; }
+.form-section input.invalid, .form-section select.invalid, .form-section textarea.invalid { border-color: #b3261e; }
+.form-success {
+  display: none; background: var(--color-dark-pink); color: var(--color-white);
+  padding: 1em; border-radius: 8px; margin-top: 1em; text-align: center;
+}
+.form-success.show { display: block; }
+.form-success a { color: var(--color-white); text-decoration: underline; }

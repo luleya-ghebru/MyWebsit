@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us | LG Store</title>
-  <meta name="description" content="Contact LG Store — find our store locations, opening hours, phone number and send us a message.">
+  <meta name="description" content="Contact LG Store: find our Sandton and Cape Town stores on the map, see opening hours and send us a message.">
+  <meta name="keywords" content="contact LG Store, LG store Sandton, LG store Cape Town, appliance store opening hours">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <!-- Leaflet (open-source map library) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -33,43 +36,41 @@
       <h2>Our Stores</h2>
       <div class="location-grid">
         <article class="location-card">
-          <h3>LG Store — Sandton</h3>
+          <h3>LG Store - Sandton</h3>
           <p>123 Rivonia Road, Sandton, Johannesburg, 2196</p>
           <p>Tel: 011 000 0000</p>
-          <p>Mon–Fri: 08:00–17:00 | Sat: 09:00–14:00 | Sun: Closed</p>
-          <iframe
-            title="Map showing LG Store Sandton location"
-            src="https://maps.google.com/maps?q=Rivonia%20Road%2C%20Sandton%2C%20Johannesburg&output=embed"
-            width="100%" height="250" style="border:0;" loading="lazy">
-          </iframe>
+          <p>Mon-Fri: 08:00-17:00 | Sat: 09:00-14:00 | Sun: Closed</p>
         </article>
-
         <article class="location-card">
-          <h3>LG Store — Cape Town</h3>
+          <h3>LG Store - Cape Town</h3>
           <p>45 Bree Street, Cape Town City Centre, 8001</p>
           <p>Tel: 021 000 0000</p>
-          <p>Mon–Fri: 08:00–17:00 | Sat: 09:00–14:00 | Sun: Closed</p>
-          <iframe
-            title="Map showing LG Store Cape Town location"
-            src="https://maps.google.com/maps?q=Bree%20Street%2C%20Cape%20Town&output=embed"
-            width="100%" height="250" style="border:0;" loading="lazy">
-          </iframe>
+          <p>Mon-Fri: 08:00-17:00 | Sat: 09:00-14:00 | Sun: Closed</p>
         </article>
       </div>
+      <!-- Interactive map: buttons fly to each store (see js/script.js) -->
+      <div class="map-buttons">
+        <button class="btn btn-secondary" data-store="0">Show Sandton</button>
+        <button class="btn btn-secondary" data-store="1">Show Cape Town</button>
+      </div>
+      <div id="map" role="region" aria-label="Map of LG Store locations"></div>
     </section>
 
     <section class="form-section">
       <h2>Send Us a Message</h2>
-      <form action="#" method="post" id="contact-form">
+      <form action="#" method="post" id="contact-form" novalidate>
 
         <label for="c-full-name">Full Name</label>
         <input type="text" id="c-full-name" name="full-name" required>
+        <span class="field-error" id="c-full-name-error"></span>
 
         <label for="c-email">Email Address</label>
         <input type="email" id="c-email" name="email" required>
+        <span class="field-error" id="c-email-error"></span>
 
-        <label for="c-phone">Phone Number</label>
-        <input type="tel" id="c-phone" name="phone" pattern="[0-9]{10}" placeholder="0821234567">
+        <label for="c-phone">Phone Number (optional)</label>
+        <input type="tel" id="c-phone" name="phone" placeholder="0821234567">
+        <span class="field-error" id="c-phone-error"></span>
 
         <label for="c-subject">Message Type</label>
         <select id="c-subject" name="subject" required>
@@ -79,11 +80,14 @@
           <option value="careers">Careers</option>
           <option value="other">Other</option>
         </select>
+        <span class="field-error" id="c-subject-error"></span>
 
         <label for="c-message">Your Message</label>
         <textarea id="c-message" name="message" rows="5" required></textarea>
+        <span class="field-error" id="c-message-error"></span>
 
         <button type="submit" class="btn btn-primary">Send Message</button>
+        <div id="contact-response" class="form-success" aria-live="polite"></div>
       </form>
     </section>
   </main>
@@ -108,5 +112,7 @@
     <p class="copyright">&copy; 2026 LG Store. All rights reserved.</p>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="../js/script.js" defer></script>
 </body>
 </html>
