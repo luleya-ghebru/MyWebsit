@@ -3,30 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us | LG Store</title>
+  <!-- SEO: unique title, description and keywords for every page -->
+  <title>Contact LG Store | Sandton &amp; Cape Town Stores, Map &amp; Opening Hours</title>
   <meta name="description" content="Contact LG Store: find our Sandton and Cape Town stores on the map, see opening hours and send us a message.">
-  <meta name="keywords" content="contact LG Store, LG store Sandton, LG store Cape Town, appliance store opening hours">
+  <meta name="keywords" content="contact LG Store, LG store Sandton, LG store Cape Town, appliance store opening hours, LG appliances near me">
+  <meta name="author" content="LG Store">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#880E4F">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://YOUR-USERNAME.github.io/YOUR-REPO/pages/contact.html">
+  <!-- Open Graph tags control how the page looks when shared on social media -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_ZA">
+  <meta property="og:site_name" content="LG Store">
+  <meta property="og:title" content="Contact LG Store | Sandton &amp; Cape Town Stores, Map &amp; Opening Hours">
+  <meta property="og:description" content="Contact LG Store: find our Sandton and Cape Town stores on the map, see opening hours and send us a message.">
+  <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO/pages/contact.html">
+  <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/images/lg-store-showroom-hero.jpg">
+  <!-- Marks the page as JavaScript-enabled so scroll animations only run when JS works -->
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-  <!-- Leaflet (open-source map library) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <!-- Leaflet (open-source map library) with an integrity hash so the file cannot be tampered with -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="../css/style.css">
+  <!-- Local SEO: structured data describing both store locations for search engines -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ElectronicsStore",
+      "name": "LG Store - Sandton",
+      "url": "https://YOUR-USERNAME.github.io/YOUR-REPO/pages/contact.html",
+      "telephone": "+27110000000",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Rivonia Road",
+        "addressLocality": "Sandton",
+        "addressRegion": "Gauteng",
+        "postalCode": "2196",
+        "addressCountry": "ZA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -26.1076,
+        "longitude": 28.0567
+      },
+      "openingHours": [
+        "Mo-Fr 08:00-17:00",
+        "Sa 09:00-14:00"
+      ]
+    },
+    {
+      "@type": "ElectronicsStore",
+      "name": "LG Store - Cape Town",
+      "url": "https://YOUR-USERNAME.github.io/YOUR-REPO/pages/contact.html",
+      "telephone": "+27210000000",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "45 Bree Street",
+        "addressLocality": "Cape Town",
+        "addressRegion": "Western Cape",
+        "postalCode": "8001",
+        "addressCountry": "ZA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -33.923,
+        "longitude": 18.421
+      },
+      "openingHours": [
+        "Mo-Fr 08:00-17:00",
+        "Sa 09:00-14:00"
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <header class="site-header">
     <div class="logo"><a href="../index.html">LG<span>Store</span></a></div>
-    <nav class="main-nav">
+    <nav class="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="../index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="products.html">Products &amp; Services</a></li>
         <li><a href="enquiry.html">Enquire</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="page-intro">
       <h1>Contact Us</h1>
       <p>We'd love to hear from you. Visit us, call us, or send a message below.</p>
@@ -38,56 +112,54 @@
         <article class="location-card">
           <h3>LG Store - Sandton</h3>
           <p>123 Rivonia Road, Sandton, Johannesburg, 2196</p>
-          <p>Tel: 011 000 0000</p>
+          <p>Tel: <a href="tel:+27110000000">011 000 0000</a></p>
           <p>Mon-Fri: 08:00-17:00 | Sat: 09:00-14:00 | Sun: Closed</p>
         </article>
         <article class="location-card">
           <h3>LG Store - Cape Town</h3>
           <p>45 Bree Street, Cape Town City Centre, 8001</p>
-          <p>Tel: 021 000 0000</p>
+          <p>Tel: <a href="tel:+27210000000">021 000 0000</a></p>
           <p>Mon-Fri: 08:00-17:00 | Sat: 09:00-14:00 | Sun: Closed</p>
         </article>
       </div>
-      <!-- Interactive map: buttons fly to each store (see js/script.js) -->
+      <!-- Interactive map: these buttons move the map to each store (js/main.js) -->
       <div class="map-buttons">
-        <button class="btn btn-secondary" data-store="0">Show Sandton</button>
-        <button class="btn btn-secondary" data-store="1">Show Cape Town</button>
+        <button type="button" class="btn btn-secondary" data-store="0">Show Sandton</button>
+        <button type="button" class="btn btn-secondary" data-store="1">Show Cape Town</button>
+        <button type="button" class="btn btn-secondary" data-store="all">Show Both Stores</button>
       </div>
       <div id="map" role="region" aria-label="Map of LG Store locations"></div>
+      <noscript><p>Turn on JavaScript to use the interactive map. Addresses are listed above.</p></noscript>
     </section>
 
     <section class="form-section">
       <h2>Send Us a Message</h2>
-      <form action="#" method="post" id="contact-form" novalidate>
-
+      <!-- action points to the store email; js/forms.js builds the email and opens it for the visitor to send -->
+      <form action="mailto:info@lgstore.co.za" method="post" enctype="text/plain" id="contact-form" novalidate>
         <label for="c-full-name">Full Name</label>
-        <input type="text" id="c-full-name" name="full-name" required>
-        <span class="field-error" id="c-full-name-error"></span>
-
+        <input type="text" id="c-full-name" name="full-name" required autocomplete="name" maxlength="60" aria-describedby="c-full-name-error">
+        <span class="field-error" id="c-full-name-error" aria-live="polite"></span>
         <label for="c-email">Email Address</label>
-        <input type="email" id="c-email" name="email" required>
-        <span class="field-error" id="c-email-error"></span>
-
+        <input type="email" id="c-email" name="email" required autocomplete="email" maxlength="100" aria-describedby="c-email-error">
+        <span class="field-error" id="c-email-error" aria-live="polite"></span>
         <label for="c-phone">Phone Number (optional)</label>
-        <input type="tel" id="c-phone" name="phone" placeholder="0821234567">
-        <span class="field-error" id="c-phone-error"></span>
-
+        <input type="tel" id="c-phone" name="phone" placeholder="0821234567" autocomplete="tel" maxlength="16" aria-describedby="c-phone-error">
+        <span class="field-error" id="c-phone-error" aria-live="polite"></span>
         <label for="c-subject">Message Type</label>
-        <select id="c-subject" name="subject" required>
+        <select id="c-subject" name="subject" required aria-describedby="c-subject-error">
           <option value="">-- Select an option --</option>
-          <option value="general">General Enquiry</option>
-          <option value="feedback">Feedback / Complaint</option>
-          <option value="careers">Careers</option>
-          <option value="other">Other</option>
+          <option value="General Enquiry">General Enquiry</option>
+          <option value="Feedback / Complaint">Feedback / Complaint</option>
+          <option value="Careers">Careers</option>
+          <option value="Other">Other</option>
         </select>
-        <span class="field-error" id="c-subject-error"></span>
-
+        <span class="field-error" id="c-subject-error" aria-live="polite"></span>
         <label for="c-message">Your Message</label>
-        <textarea id="c-message" name="message" rows="5" required></textarea>
-        <span class="field-error" id="c-message-error"></span>
-
+        <textarea id="c-message" name="message" rows="5" required minlength="10" maxlength="500" aria-describedby="c-message-error c-message-count"></textarea>
+        <span class="char-count" id="c-message-count">0 / 500</span>
+        <span class="field-error" id="c-message-error" aria-live="polite"></span>
         <button type="submit" class="btn btn-primary">Send Message</button>
-        <div id="contact-response" class="form-success" aria-live="polite"></div>
+        <div id="contact-response" class="form-success" aria-live="polite" tabindex="-1"></div>
       </form>
     </section>
   </main>
@@ -103,16 +175,19 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="products.html">Products &amp; Services</a></li>
+        <li><a href="enquiry.html">Enquire</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h3>Contact</h3>
-      <p>Tel: 08 146 28415<br>Email: info@lgstore.co.za</p>
+      <p>Tel: <a href="tel:+27814628415">08 146 28415</a><br>Email: <a href="mailto:info@lgstore.co.za">info@lgstore.co.za</a></p>
     </div>
     <p class="copyright">&copy; 2026 LG Store. All rights reserved.</p>
   </footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="../js/script.js" defer></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="../js/forms.js" defer></script>
+  <script src="../js/main.js" defer></script>
 </body>
 </html>

@@ -1,187 +1,159 @@
-// LG Store - Part 3 interactivity.
-// One file for every page: each block only runs if its elements exist.
-document.addEventListener('DOMContentLoaded', () => {
+/* =========================================================
+   main.js - site-wide interactivity
+   1. Scroll-reveal animation   2. FAQ accordion
+   3. Gallery lightbox          4. Interactive Leaflet map
+   Patterns adapted from MDN Web Docs (n.d.) and the W3C
+   WAI-ARIA Authoring Practices (n.d.) - see README references.
+   ========================================================= */
+(function () {
+  'use strict';
 
-  /* ---------- Helpers ---------- */
-  const money = n => 'R ' + n.toLocaleString('en-ZA');
-  // Escape user text before putting it into innerHTML (basic security)
-  const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-  const phoneOk = v => /^0\d{9}$/.test(v.replace(/\s/g, '')); // 10-digit SA number
-  const val = id => document.getElementById(id).value;
-
-  // Show/clear an error under a field; returns true when the field is valid
-  function setError(id, msg) {
-    document.getElementById(id).classList.toggle('invalid', !!msg);
-    document.getElementById(id + '-error').textContent = msg || '';
-    return !msg;
+  /* Keeps keyboard focus inside a pop-up (modal / lightbox) while it is open */
+  function trapFocus(container, event) {
+    const focusable = container.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   }
+  window.LGStore = { trapFocus: trapFocus };   // shared with products.js
 
-  /* ---------- 1. Scroll-reveal animation (CSS transition + IntersectionObserver) ---------- */
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.15 });
-  function reveal(list) { list.forEach(el => { el.classList.add('reveal'); observer.observe(el); }); }
-  reveal(document.querySelectorAll('.category-card, .team-member, .location-card, .faq-item, .gallery-grid img'));
-
-  /* ---------- 2. Dynamic products with search, filter and sort (products.html) ---------- */
-  const grid = document.getElementById('product-grid');
-  if (grid) {
-    const products = [
-      { name: 'LG OLED 55" Smart TV', cat: 'Televisions', price: 12999, stock: 'In stock', img: 'tv.jpg' },
-      { name: 'LG QNED 65" 4K TV', cat: 'Televisions', price: 15499, stock: 'Low stock', img: 'tv.jpg' },
-      { name: 'LG LED 43" Smart TV', cat: 'Televisions', price: 6999, stock: 'In stock', img: 'tv.jpg' },
-      { name: 'LG Side-by-Side Fridge 600L', cat: 'Fridges & Freezers', price: 17999, stock: 'In stock', img: 'fridge.webp' },
-      { name: 'LG Top-Freezer Fridge 420L', cat: 'Fridges & Freezers', price: 9499, stock: 'In stock', img: 'fridge.webp' },
-      { name: 'LG Front Loader Washer 9kg', cat: 'Washing Machines', price: 7299, stock: 'In stock', img: 'washing ma.webp' },
-      { name: 'LG Top Loader Washer 12kg', cat: 'Washing Machines', price: 10499, stock: 'Order-in', img: 'washing ma.webp' },
-      { name: 'LG Inverter Split Aircon 12000 BTU', cat: 'Air Conditioning', price: 8999, stock: 'In stock', img: 'air condition.png' },
-      { name: 'LG Inverter Split Aircon 18000 BTU', cat: 'Air Conditioning', price: 12499, stock: 'Low stock', img: 'air condition.png' },
-      { name: 'LG NeoChef Microwave 42L', cat: 'Small Appliances', price: 1199, stock: 'In stock', img: 'Small LG kitchen and home appliances.jpg' }
-    ];
-    const search = document.getElementById('search');
-    const filter = document.getElementById('filter');
-    const sort = document.getElementById('sort');
-    const count = document.getElementById('result-count');
-
-    function render() {
-      const term = search.value.trim().toLowerCase();
-      let list = products.filter(p =>
-        (filter.value === 'all' || p.cat === filter.value) && p.name.toLowerCase().includes(term));
-      if (sort.value === 'low') list.sort((a, b) => a.price - b.price);
-      else if (sort.value === 'high') list.sort((a, b) => b.price - a.price);
-      else list.sort((a, b) => a.name.localeCompare(b.name));
-
-      grid.innerHTML = ''; // clear, then rebuild the cards with DOM manipulation
-      list.forEach(p => {
-        const card = document.createElement('article');
-        card.className = 'product-card';
-        card.innerHTML = `<img src="../assets/${p.img}" alt="${esc(p.name)}" loading="lazy">
-          <h3>${esc(p.name)}</h3><p>${esc(p.cat)}</p>
-          <p class="price">${money(p.price)}</p><p class="stock">${p.stock}</p>`;
-        grid.appendChild(card);
+  /* ---------- 1. Scroll-reveal: sections fade in once as they enter the screen ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);          // animate only once
+        }
       });
-      count.textContent = list.length ? `Showing ${list.length} product(s)` : 'No products match your search.';
-    }
-    [search, filter, sort].forEach(el => el.addEventListener('input', render));
-    render();
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('visible'));   // very old browsers: just show everything
   }
 
-  /* ---------- 3. Accordion FAQ (products.html) ---------- */
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      btn.nextElementSibling.hidden = open;
+  /* ---------- 2. Accordion (FAQ) ---------- */
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      const isOpen = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!isOpen));   // tells screen readers the state
+      item.classList.toggle('open', !isOpen);                   // CSS animates the answer open/closed
     });
   });
 
-  /* ---------- 4. Gallery lightbox (about.html) ---------- */
-  const pics = document.querySelectorAll('.gallery-grid img');
-  if (pics.length) {
+  /* ---------- 3. Gallery lightbox ---------- */
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+  if (galleryItems.length) {
     const box = document.createElement('div');
     box.className = 'lightbox';
-    box.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><img alt=""><p></p>';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Image viewer');
+    box.innerHTML =
+      '<button type="button" class="lightbox-close" aria-label="Close image viewer">&times;</button>' +
+      '<button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous image">&#8249;</button>' +
+      '<figure><img src="" alt=""><figcaption></figcaption></figure>' +
+      '<button type="button" class="lightbox-nav lightbox-next" aria-label="Next image">&#8250;</button>';
     document.body.appendChild(box);
-    const big = box.querySelector('img'), cap = box.querySelector('p');
-    const close = () => box.classList.remove('open');
-    pics.forEach(img => img.addEventListener('click', () => {
-      big.src = img.src; big.alt = img.alt; cap.textContent = img.alt;
+
+    const bigImg = box.querySelector('img');
+    const caption = box.querySelector('figcaption');
+    const closeBtn = box.querySelector('.lightbox-close');
+    let current = 0;
+    let opener = null;
+
+    function show(index) {
+      current = (index + galleryItems.length) % galleryItems.length;   // wraps around at both ends
+      const item = galleryItems[current];
+      bigImg.src = item.dataset.full;
+      bigImg.alt = item.querySelector('img').alt;
+      caption.textContent = item.dataset.caption;
+    }
+    function open(index) {
+      opener = document.activeElement;
+      show(index);
       box.classList.add('open');
-    }));
-    box.addEventListener('click', e => { if (e.target !== big) close(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+      document.body.classList.add('no-scroll');
+      closeBtn.focus();
+    }
+    function close() {
+      box.classList.remove('open');
+      document.body.classList.remove('no-scroll');
+      if (opener) opener.focus();
+    }
+
+    galleryItems.forEach((item, i) => item.addEventListener('click', () => open(i)));
+    closeBtn.addEventListener('click', close);
+    box.querySelector('.lightbox-prev').addEventListener('click', () => show(current - 1));
+    box.querySelector('.lightbox-next').addEventListener('click', () => show(current + 1));
+    box.addEventListener('click', e => { if (e.target === box) close(); });
+    document.addEventListener('keydown', e => {
+      if (!box.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(current - 1);
+      else if (e.key === 'ArrowRight') show(current + 1);
+      else if (e.key === 'Tab') trapFocus(box, e);
+    });
   }
 
-  /* ---------- 5. Interactive Leaflet map with two stores (contact.html) ---------- */
+  /* ---------- 4. Interactive map (contact page) - Leaflet + OpenStreetMap ---------- */
   const mapEl = document.getElementById('map');
-  if (mapEl && window.L) {
+  if (mapEl) {
+    if (typeof L === 'undefined') {
+      mapEl.textContent = 'The map could not be loaded. Please use the addresses listed above.';
+      return;
+    }
+
     const stores = [
-      { name: 'LG Store - Sandton', lat: -26.1076, lng: 28.0567, addr: '123 Rivonia Road, Sandton' },
-      { name: 'LG Store - Cape Town', lat: -33.9249, lng: 18.4241, addr: '45 Bree Street, Cape Town' }
+      { name: 'LG Store - Sandton',   address: '123 Rivonia Road, Sandton, Johannesburg, 2196', tel: '011 000 0000', lat: -26.1076, lng: 28.0567 },
+      { name: 'LG Store - Cape Town', address: '45 Bree Street, Cape Town City Centre, 8001',   tel: '021 000 0000', lat: -33.9230, lng: 18.4210 }
     ];
-    const map = L.map('map').setView([stores[0].lat, stores[0].lng], 13);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-      { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
-    stores.forEach(s => L.marker([s.lat, s.lng]).addTo(map).bindPopup(`<strong>${s.name}</strong><br>${s.addr}`));
-    document.querySelectorAll('[data-store]').forEach(btn =>
-      btn.addEventListener('click', () => { const s = stores[btn.dataset.store]; map.flyTo([s.lat, s.lng], 14); }));
-  }
 
-  /* ---------- 6. Enquiry form: validate, send (AJAX), show cost + availability ---------- */
-  const enq = document.getElementById('enquiry-form');
-  if (enq) {
-    enq.addEventListener('submit', async e => {
-      e.preventDefault();
-      const qty = +val('quantity');
-      const ok = [
-        setError('full-name', val('full-name').trim().length >= 2 ? '' : 'Enter your full name (min 2 characters).'),
-        setError('email', emailOk(val('email')) ? '' : 'Enter a valid email address.'),
-        setError('phone', phoneOk(val('phone')) ? '' : 'Enter a 10-digit phone number, e.g. 0821234567.'),
-        setError('enquiry-type', val('enquiry-type') ? '' : 'Please choose an enquiry type.'),
-        setError('product-category', val('product-category') ? '' : 'Please choose a category.'),
-        setError('quantity', qty >= 1 && qty <= 50 ? '' : 'Quantity must be between 1 and 50.'),
-        setError('message', val('message').trim().length >= 10 ? '' : 'Message must be at least 10 characters.')
-      ];
-      if (ok.includes(false)) return;
+    const map = L.map('map', { scrollWheelZoom: false });   // wheel zoom off so the page can still scroll
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-      const prices = { tv: 6999, fridge: 9499, washer: 7299, aircon: 8999, 'small-appliance': 1199 };
-      const stock = {
-        tv: 'In stock, delivery in 2-3 working days', fridge: 'In stock, delivery in 2-3 working days',
-        washer: 'Limited stock, delivery in 3-5 working days', aircon: 'Order-in, 5-7 working days',
-        'small-appliance': 'In stock, collect in store today'
-      };
-      const type = val('enquiry-type'), cat = val('product-category');
-      const catName = document.getElementById('product-category').selectedOptions[0].text;
-      let cost;
-      if (type === 'repair') cost = 'A repair call-out fee of R 450 applies (credited if we do the repair).';
-      else if (type === 'warranty') cost = 'Warranty assessments are free with your proof of purchase.';
-      else {
-        const install = type === 'installation';
-        cost = `Estimated starting cost for ${qty} x ${esc(catName)}: ${money(prices[cat] * qty + (install ? 650 * qty : 0))}${install ? ' (includes installation)' : ''}.`;
-      }
+    const markers = stores.map(store => {
+      /* The popup is built from DOM elements, so no HTML is injected from strings */
+      const popup = document.createElement('div');
+      const title = document.createElement('strong');
+      title.textContent = store.name;
+      const addr = document.createElement('p');
+      addr.textContent = store.address;
+      const tel = document.createElement('p');
+      tel.textContent = 'Tel: ' + store.tel;
+      const dir = document.createElement('a');
+      dir.href = 'https://www.openstreetmap.org/directions?to=' + store.lat + '%2C' + store.lng;
+      dir.textContent = 'Get directions';
+      dir.target = '_blank';
+      dir.rel = 'noopener noreferrer';
+      popup.append(title, addr, tel, dir);
 
-      const out = document.getElementById('enquiry-response');
-      out.className = 'form-success show';
-      out.textContent = 'Sending your enquiry...';
-      try { // AJAX: asynchronous POST to a free test API
-        await fetch('https://jsonplaceholder.typicode.com/posts', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: val('full-name'), email: val('email'), type, cat, qty })
-        });
-      } catch (err) { /* offline: still show the response below */ }
-      const method = enq.querySelector('input[name="contact-method"]:checked').value;
-      out.innerHTML = `<strong>Thank you, ${esc(val('full-name'))}!</strong><br>${cost}<br>
-        Availability: ${stock[cat]}.<br>We will contact you by ${method} on ${esc(val('phone'))}.`;
-      enq.reset();
+      return L.marker([store.lat, store.lng], { title: store.name, alt: store.name }).addTo(map).bindPopup(popup);
+    });
+
+    const bounds = L.latLngBounds(stores.map(s => [s.lat, s.lng]));
+    map.fitBounds(bounds, { padding: [40, 40] });          // starts by showing both stores
+
+    document.querySelectorAll('.map-buttons [data-store]').forEach(button => {
+      button.addEventListener('click', () => {
+        const target = button.dataset.store;
+        if (target === 'all') {
+          map.closePopup();
+          map.flyToBounds(bounds, { padding: [40, 40] });
+        } else {
+          const store = stores[Number(target)];
+          map.flyTo([store.lat, store.lng], 15);
+          markers[Number(target)].openPopup();
+        }
+        mapEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
     });
   }
-
-  /* ---------- 7. Contact form: validate, then build an email (mailto) ---------- */
-  const con = document.getElementById('contact-form');
-  if (con) {
-    con.addEventListener('submit', e => {
-      e.preventDefault();
-      const ok = [
-        setError('c-full-name', val('c-full-name').trim().length >= 2 ? '' : 'Enter your full name.'),
-        setError('c-email', emailOk(val('c-email')) ? '' : 'Enter a valid email address.'),
-        setError('c-phone', !val('c-phone') || phoneOk(val('c-phone')) ? '' : 'Phone must be 10 digits.'),
-        setError('c-subject', val('c-subject') ? '' : 'Please choose a message type.'),
-        setError('c-message', val('c-message').trim().length >= 10 ? '' : 'Message must be at least 10 characters.')
-      ];
-      if (ok.includes(false)) return;
-
-      const to = 'info@lgstore.co.za'; // recipient stated in the code
-      const typeText = document.getElementById('c-subject').selectedOptions[0].text;
-      const subject = `[${typeText}] Message from ${val('c-full-name')}`;
-      const body = `Name: ${val('c-full-name')}\nEmail: ${val('c-email')}\nPhone: ${val('c-phone') || 'n/a'}\nType: ${typeText}\n\n${val('c-message')}`;
-      const link = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      const out = document.getElementById('contact-response');
-      out.className = 'form-success show';
-      out.innerHTML = `Your email is ready. <a href="${link}">Click here to send it</a> if your email app did not open.`;
-      window.location.href = link;
-    });
-  }
-});
+})();

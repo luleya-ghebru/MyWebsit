@@ -3,21 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LG Store | Home Appliances &amp; Electronics</title>
-  <meta name="description" content="LG Store is your trusted local retailer for LG televisions, home entertainment, fridges, washing machines, air conditioning and small appliances since 2010.">
+  <!-- SEO: unique title, description and keywords for every page -->
+  <title>LG Store | LG Appliances &amp; Electronics in Sandton &amp; Cape Town</title>
+  <meta name="description" content="LG Store is your trusted local retailer for LG televisions, fridges, washing machines, air conditioning and small appliances in Sandton and Cape Town since 2010.">
+  <meta name="keywords" content="LG Store, LG appliances South Africa, LG TV, LG fridge, LG washing machine, LG air conditioner, appliance store Sandton, appliance store Cape Town">
+  <meta name="author" content="LG Store">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#880E4F">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://YOUR-USERNAME.github.io/YOUR-REPO/index.html">
+  <!-- Open Graph tags control how the page looks when shared on social media -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_ZA">
+  <meta property="og:site_name" content="LG Store">
+  <meta property="og:title" content="LG Store | LG Appliances &amp; Electronics in Sandton &amp; Cape Town">
+  <meta property="og:description" content="LG Store is your trusted local retailer for LG televisions, fridges, washing machines, air conditioning and small appliances in Sandton and Cape Town since 2010.">
+  <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO/index.html">
+  <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/images/lg-store-showroom-hero.jpg">
+  <!-- Marks the page as JavaScript-enabled so scroll animations only run when JS works -->
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <header class="site-header">
-    <div class="logo">
-      <a href="index.html">LG<span>Store</span></a>
-    </div>
-    <nav class="main-nav">
+    <div class="logo"><a href="index.html">LG<span>Store</span></a></div>
+    <nav class="main-nav" aria-label="Main navigation">
       <ul>
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
         <li><a href="pages/about.html">About Us</a></li>
         <li><a href="pages/products.html">Products &amp; Services</a></li>
         <li><a href="pages/enquiry.html">Enquire</a></li>
@@ -26,44 +44,52 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
       <div class="hero-content">
         <h1>Quality LG Technology for Every Home</h1>
-        <p>Televisions, home entertainment, fridges, washing machines, air conditioning and small appliances — backed by expert guidance and trusted after-sales service since 2010.</p>
+        <p>Televisions, home entertainment, fridges, washing machines, air conditioning and small appliances &mdash; backed by expert guidance and trusted after-sales service since 2010.</p>
         <a href="pages/products.html" class="btn btn-primary">Shop Our Range</a>
         <a href="pages/enquiry.html" class="btn btn-secondary">Book a Service</a>
       </div>
-      <img src="assets/logo.jpg" alt="LG Store showroom displaying televisions and home appliances" class="hero-image">
+      <img src="images/lg-store-showroom-hero.jpg" alt="LG Store showroom displaying televisions and home appliances" class="hero-image" fetchpriority="high">
     </section>
 
-    <section class="categories">
+    <section class="categories reveal">
       <h2>Shop by Category</h2>
       <div class="category-grid">
         <article class="category-card">
-          <img src="assets/tv.jpg" alt="LG OLED and QNED televisions on display">
-          <h3>Televisions</h3>
+          <img src="images/lg-oled-television.jpg" alt="LG OLED and QNED televisions on display" loading="lazy" decoding="async">
+          <h3><a href="pages/products.html?category=Televisions">Televisions</a></h3>
           <p>OLED, QNED and Smart TVs for every room and budget.</p>
         </article>
         <article class="category-card">
-          <img src="assets/fridge.webp" alt="LG fridges and freezers on display">
-          <h3>Fridges &amp; Freezers</h3>
+          <img src="images/lg-fridge-freezer.webp" alt="LG fridges and freezers on display" loading="lazy" decoding="async">
+          <h3><a href="pages/products.html?category=Fridges%20%26%20Freezers">Fridges &amp; Freezers</a></h3>
           <p>Energy-efficient cooling solutions for the modern kitchen.</p>
         </article>
         <article class="category-card">
-          <img src="assets/washing ma.webp" alt="LG washing machines and tumble dryers">
-          <h3>Washing Machines</h3>
+          <img src="images/lg-washing-machine.webp" alt="LG washing machines and tumble dryers" loading="lazy" decoding="async">
+          <h3><a href="pages/products.html?category=Washing%20Machines">Washing Machines</a></h3>
           <p>Front and top loaders built for South African households.</p>
         </article>
         <article class="category-card">
-          <img src="assets/air condition.png" alt="LG air conditioning units">
-          <h3>Air Conditioning</h3>
+          <img src="images/lg-air-conditioner.png" alt="LG air conditioning units" loading="lazy" decoding="async">
+          <h3><a href="pages/products.html?category=Air%20Conditioning">Air Conditioning</a></h3>
           <p>Split and inverter units for year-round comfort.</p>
         </article>
       </div>
     </section>
 
-    <section class="value-prop">
+    <!-- Featured products are built by JavaScript from the product list in js/products.js -->
+    <section class="featured reveal">
+      <h2>Featured Products</h2>
+      <div id="featured-grid" class="product-grid"></div>
+      <noscript><p>Turn on JavaScript to see featured products, or <a href="pages/products.html">browse the full range</a>.</p></noscript>
+      <a href="pages/products.html" class="btn btn-primary">View All Products</a>
+    </section>
+
+    <section class="value-prop reveal">
       <h2>Why Shop With Us</h2>
       <ul>
         <li>15+ years as an independently owned LG retailer</li>
@@ -73,9 +99,9 @@
       </ul>
     </section>
 
-    <section class="trust">
+    <section class="trust reveal">
       <h2>Trusted by Our Community</h2>
-      <blockquote>"The team helped me choose the right fridge for my family and had it delivered the next day." — Local customer</blockquote>
+      <blockquote>"The team helped me choose the right fridge for my family and had it delivered the next day." &mdash; Local customer</blockquote>
     </section>
   </main>
 
@@ -87,17 +113,21 @@
     <div class="footer-col">
       <h3>Quick Links</h3>
       <ul>
+        <li><a href="index.html">Home</a></li>
         <li><a href="pages/about.html">About Us</a></li>
         <li><a href="pages/products.html">Products &amp; Services</a></li>
+        <li><a href="pages/enquiry.html">Enquire</a></li>
         <li><a href="pages/contact.html">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h3>Contact</h3>
-      <p>Tel: 08 146 28415<br>Email: info@lgstore.co.za</p>
+      <p>Tel: <a href="tel:+27814628415">08 146 28415</a><br>Email: <a href="mailto:info@lgstore.co.za">info@lgstore.co.za</a></p>
     </div>
     <p class="copyright">&copy; 2026 LG Store. All rights reserved.</p>
   </footer>
 
+  <script src="js/products.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

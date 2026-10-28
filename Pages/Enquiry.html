@@ -3,61 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enquire | LG Store</title>
+  <!-- SEO: unique title, description and keywords for every page -->
+  <title>Enquire | Prices, Availability &amp; Service Bookings &ndash; LG Store</title>
   <meta name="description" content="Enquire about LG product pricing and availability, or book an installation, repair or warranty service with LG Store.">
   <meta name="keywords" content="LG enquiry, appliance prices, book appliance repair, LG installation, LG warranty claim">
+  <meta name="author" content="LG Store">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#880E4F">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://YOUR-USERNAME.github.io/YOUR-REPO/pages/enquiry.html">
+  <!-- Open Graph tags control how the page looks when shared on social media -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_ZA">
+  <meta property="og:site_name" content="LG Store">
+  <meta property="og:title" content="Enquire | Prices, Availability &amp; Service Bookings &ndash; LG Store">
+  <meta property="og:description" content="Enquire about LG product pricing and availability, or book an installation, repair or warranty service with LG Store.">
+  <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO/pages/enquiry.html">
+  <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/images/lg-store-showroom-hero.jpg">
+  <!-- Marks the page as JavaScript-enabled so scroll animations only run when JS works -->
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <header class="site-header">
     <div class="logo"><a href="../index.html">LG<span>Store</span></a></div>
-    <nav class="main-nav">
+    <nav class="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="../index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="products.html">Products &amp; Services</a></li>
-        <li><a href="enquiry.html" class="active">Enquire</a></li>
+        <li><a href="enquiry.html" class="active" aria-current="page">Enquire</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="page-intro">
       <h1>Product &amp; Service Enquiry</h1>
       <p>Ask about pricing, availability, or book an installation, repair or warranty service.</p>
     </section>
 
     <section class="form-section">
-      <!-- novalidate: validation is done in js/script.js so we can show our own messages -->
-      <form action="#" method="post" id="enquiry-form" novalidate>
-
+      <!-- novalidate: js/forms.js checks every field and shows our own messages.
+           action/method are the fallback if JavaScript is switched off. -->
+      <form action="enquiry.html" method="get" id="enquiry-form" novalidate>
         <label for="full-name">Full Name</label>
-        <input type="text" id="full-name" name="full-name" required>
-        <span class="field-error" id="full-name-error"></span>
-
+        <input type="text" id="full-name" name="full-name" required autocomplete="name" maxlength="60" aria-describedby="full-name-error">
+        <span class="field-error" id="full-name-error" aria-live="polite"></span>
         <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required>
-        <span class="field-error" id="email-error"></span>
-
+        <input type="email" id="email" name="email" required autocomplete="email" maxlength="100" aria-describedby="email-error">
+        <span class="field-error" id="email-error" aria-live="polite"></span>
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" placeholder="0821234567" required>
-        <span class="field-error" id="phone-error"></span>
-
+        <input type="tel" id="phone" name="phone" placeholder="0821234567" required autocomplete="tel" maxlength="16" aria-describedby="phone-error">
+        <span class="field-error" id="phone-error" aria-live="polite"></span>
         <label for="enquiry-type">Enquiry Type</label>
-        <select id="enquiry-type" name="enquiry-type" required>
+        <select id="enquiry-type" name="enquiry-type" required aria-describedby="enquiry-type-error">
           <option value="">-- Select an option --</option>
           <option value="product-info">Product Information / Pricing</option>
           <option value="installation">Installation Booking</option>
           <option value="repair">Repair / Service Booking</option>
           <option value="warranty">Warranty Claim</option>
         </select>
-        <span class="field-error" id="enquiry-type-error"></span>
-
+        <span class="field-error" id="enquiry-type-error" aria-live="polite"></span>
         <label for="product-category">Product Category</label>
-        <select id="product-category" name="product-category" required>
+        <select id="product-category" name="product-category" required aria-describedby="product-category-error">
           <option value="">-- Select a category --</option>
           <option value="tv">Televisions</option>
           <option value="fridge">Fridges &amp; Freezers</option>
@@ -65,16 +81,14 @@
           <option value="aircon">Air Conditioning</option>
           <option value="small-appliance">Small Appliances</option>
         </select>
-        <span class="field-error" id="product-category-error"></span>
-
+        <span class="field-error" id="product-category-error" aria-live="polite"></span>
         <label for="quantity">Quantity</label>
-        <input type="number" id="quantity" name="quantity" value="1" min="1" max="50" required>
-        <span class="field-error" id="quantity-error"></span>
-
+        <input type="number" id="quantity" name="quantity" value="1" min="1" max="50" step="1" required aria-describedby="quantity-error">
+        <span class="field-error" id="quantity-error" aria-live="polite"></span>
         <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-        <span class="field-error" id="message-error"></span>
-
+        <textarea id="message" name="message" rows="5" required minlength="10" maxlength="500" aria-describedby="message-error message-count"></textarea>
+        <span class="char-count" id="message-count">0 / 500</span>
+        <span class="field-error" id="message-error" aria-live="polite"></span>
         <fieldset>
           <legend>Preferred Contact Method</legend>
           <label><input type="radio" name="contact-method" value="email" checked> Email</label>
@@ -84,7 +98,7 @@
 
         <button type="submit" class="btn btn-primary">Submit Enquiry</button>
         <!-- The cost and availability response appears here -->
-        <div id="enquiry-response" class="form-success" aria-live="polite"></div>
+        <div id="enquiry-response" class="form-success" aria-live="polite" tabindex="-1"></div>
       </form>
     </section>
   </main>
@@ -98,17 +112,21 @@
       <h3>Quick Links</h3>
       <ul>
         <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
         <li><a href="products.html">Products &amp; Services</a></li>
+        <li><a href="enquiry.html">Enquire</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h3>Contact</h3>
-      <p>Tel: 08 146 28415<br>Email: info@lgstore.co.za</p>
+      <p>Tel: <a href="tel:+27814628415">08 146 28415</a><br>Email: <a href="mailto:info@lgstore.co.za">info@lgstore.co.za</a></p>
     </div>
     <p class="copyright">&copy; 2026 LG Store. All rights reserved.</p>
   </footer>
 
-  <script src="../js/script.js" defer></script>
+  <script src="../js/products.js" defer></script>
+  <script src="../js/forms.js" defer></script>
+  <script src="../js/main.js" defer></script>
 </body>
 </html>

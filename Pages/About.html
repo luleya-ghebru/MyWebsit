@@ -3,19 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | LG Store</title>
-  <meta name="description" content="Learn about LG Store's history, mission and vision as an independently owned LG retailer since 2010.">
+  <!-- SEO: unique title, description and keywords for every page -->
+  <title>About Us | LG Store &ndash; Independent LG Retailer Since 2010</title>
+  <meta name="description" content="Learn about LG Store's history, mission, vision and team. An independently owned LG retailer in Sandton and Cape Town since 2010.">
+  <meta name="keywords" content="about LG Store, LG retailer history, LG Store team, independent LG dealer South Africa">
+  <meta name="author" content="LG Store">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#880E4F">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://YOUR-USERNAME.github.io/YOUR-REPO/pages/about.html">
+  <!-- Open Graph tags control how the page looks when shared on social media -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_ZA">
+  <meta property="og:site_name" content="LG Store">
+  <meta property="og:title" content="About Us | LG Store &ndash; Independent LG Retailer Since 2010">
+  <meta property="og:description" content="Learn about LG Store's history, mission, vision and team. An independently owned LG retailer in Sandton and Cape Town since 2010.">
+  <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO/pages/about.html">
+  <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/images/lg-store-showroom-hero.jpg">
+  <!-- Marks the page as JavaScript-enabled so scroll animations only run when JS works -->
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <header class="site-header">
     <div class="logo"><a href="../index.html">LG<span>Store</span></a></div>
-    <nav class="main-nav">
+    <nav class="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="../index.html">Home</a></li>
-        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="about.html" class="active" aria-current="page">About Us</a></li>
         <li><a href="products.html">Products &amp; Services</a></li>
         <li><a href="enquiry.html">Enquire</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -23,7 +44,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="page-intro">
       <h1>About LG Store</h1>
       <p>Independently owned. Locally trusted. LG certified.</p>
@@ -35,7 +56,7 @@
         electronics and home appliances from LG since 2010. What began as a single
         showroom has grown into a well-known local retailer of televisions, home
         entertainment equipment, fridges, washing machines, air conditioners and small
-        appliances — built on knowledgeable, competent sales staff and dependable
+        appliances &mdash; built on knowledgeable, competent sales staff and dependable
         after-sales service.</p>
     </section>
 
@@ -56,26 +77,46 @@
       <h2>Meet the Team</h2>
       <div class="team-grid">
         <article class="team-member">
-          <img src="../assets/Store manager standing in the showroom.webp" alt="Store manager standing in the showroom">
+          <img src="../images/store-manager-showroom.webp" alt="Store manager standing in the showroom" loading="lazy" decoding="async">
           <h3>Store Manager</h3>
           <p>Oversees daily operations and product sourcing.</p>
         </article>
         <article class="team-member">
-          <img src="../assets/Sales specialist assisting a customer.webp" alt="Sales specialist assisting a customer">
+          <img src="../images/sales-specialist-customer.webp" alt="Sales specialist assisting a customer" loading="lazy" decoding="async">
           <h3>Sales Specialist</h3>
           <p>Guides customers to the right product for their home.</p>
         </article>
         <article class="team-member">
-          <img src="../assets/Service technician repairing an appliance.jpg" alt="Service technician repairing an appliance">
+          <img src="../images/service-technician-repair.jpg" alt="Service technician repairing an appliance" loading="lazy" decoding="async">
           <h3>Service Technician</h3>
           <p>Handles installations, repairs and warranty claims.</p>
         </article>
       </div>
     </section>
 
+    <!-- Gallery: clicking a picture opens the lightbox built in js/main.js -->
+    <section class="about-section gallery">
+      <h2>Inside LG Store</h2>
+      <p>Select any photo to view it larger. Use the arrow keys to move between photos.</p>
+      <ul class="gallery-grid">
+          <li><button type="button" class="gallery-item" data-full="../images/lg-store-showroom-hero.jpg" data-caption="Our showroom, stocked with the latest LG range">
+            <img src="../images/lg-store-showroom-hero.jpg" alt="LG Store showroom with televisions and appliances on display" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" class="gallery-item" data-full="../images/busy-electronics-store.jpg" data-caption="A busy Saturday on the shop floor">
+            <img src="../images/busy-electronics-store.jpg" alt="Busy electronics store with customers browsing appliances" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" class="gallery-item" data-full="../images/lg-kitchen-appliances.jpg" data-caption="Small kitchen and home appliances">
+            <img src="../images/lg-kitchen-appliances.jpg" alt="Small LG kitchen and home appliances on a counter" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" class="gallery-item" data-full="../images/lg-oled-television.jpg" data-caption="OLED and QNED televisions">
+            <img src="../images/lg-oled-television.jpg" alt="LG OLED televisions on display" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" class="gallery-item" data-full="../images/lg-fridge-freezer.webp" data-caption="Fridges and freezers">
+            <img src="../images/lg-fridge-freezer.webp" alt="LG fridges and freezers lined up in the showroom" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" class="gallery-item" data-full="../images/lg-washing-machine.webp" data-caption="Washing machines and dryers">
+            <img src="../images/lg-washing-machine.webp" alt="LG front-load washing machines on display" loading="lazy" decoding="async"></button></li>
+      </ul>
+    </section>
+
     <section class="about-section store-locator">
       <h2>Find Our Stores</h2>
-      <p>Visit us in-store — see the <a href="contact.html">Contact page</a> for addresses,
+      <p>Visit us in-store &mdash; see the <a href="contact.html">Contact page</a> for addresses,
         hours and directions to both our locations.</p>
     </section>
   </main>
@@ -89,16 +130,19 @@
       <h3>Quick Links</h3>
       <ul>
         <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
         <li><a href="products.html">Products &amp; Services</a></li>
+        <li><a href="enquiry.html">Enquire</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h3>Contact</h3>
-      <p>Tel: 08 146 28415<br>Email: info@lgstore.co.za</p>
+      <p>Tel: <a href="tel:+27814628415">08 146 28415</a><br>Email: <a href="mailto:info@lgstore.co.za">info@lgstore.co.za</a></p>
     </div>
     <p class="copyright">&copy; 2026 LG Store. All rights reserved.</p>
   </footer>
 
+  <script src="../js/main.js" defer></script>
 </body>
 </html>
