@@ -7,7 +7,10 @@
 (function () {
   'use strict';
 
-  const STORE_EMAIL = 'info@lgstore.co.za';
+  /* ===== YOUR DETAILS - change these two lines ===== */
+  const STORE_EMAIL = 'ST10523298@rcconnect.edu.za';      // the email address that receives messages
+  const WHATSAPP_NUMBER = '27814186421';         // your WhatsApp number: country code + number, no + or spaces (082 123 4567 becomes 27821234567)
+  /* ================================================== */
 
   /* Optional AJAX: paste a Formspree (or similar) endpoint here to send the
      form in the background. Leave it empty to use the built-in response / email. */
@@ -110,6 +113,17 @@
     box.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
+  /* Adds "Send by email" and "Send by WhatsApp" buttons that open with the message already typed */
+  function addSendLinks(subject, body, nodes) {
+    const mail = el('a', 'btn', 'Send by email');
+    mail.href = 'mailto:' + STORE_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    const wa = el('a', 'btn', 'Send by WhatsApp');
+    wa.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(subject + '\n\n' + body);
+    wa.target = '_blank';
+    wa.rel = 'noopener noreferrer';
+    nodes.push(mail, wa);
+  }
+
   function addWorkingDays(days) {
     const d = new Date();
     while (days > 0) {
@@ -209,6 +223,12 @@
       reply.lines.forEach(line => list.appendChild(el('li', '', line)));
       nodes.push(list);
       nodes.push(el('p', '', 'We will contact you by ' + data['contact-method'] + '.'));
+      const typeText = document.getElementById('enquiry-type').selectedOptions[0].text;
+      const enquiryText = 'Reference: ' + reference + '\nName: ' + data['full-name'] + '\nEmail: ' + data.email +
+        '\nPhone: ' + data.phone + '\nEnquiry type: ' + typeText + '\nCategory: ' + CATEGORY_BY_VALUE[data['product-category']] +
+        '\nQuantity: ' + data.quantity + '\nPreferred contact: ' + data['contact-method'] + '\n\n' + data.message;
+      nodes.push(el('p', '', 'Send your enquiry to our team:'));
+      addSendLinks('Enquiry ' + reference, enquiryText, nodes);
       if (net.ok === false) nodes.push(el('p', '', 'Note: we could not send this to our team automatically. Please also call us.'));
       showBox(document.getElementById('enquiry-response'), nodes);
       enquiryForm.reset();
@@ -244,8 +264,6 @@
       const emailSubject = '[Website] ' + subject + ' from ' + name;
       const emailBody = 'Name: ' + name + '\nEmail: ' + email + '\nPhone: ' + (phone || 'Not given') +
         '\nMessage type: ' + subject + '\n\n' + message;
-      const mailto = 'mailto:' + STORE_EMAIL + '?subject=' + encodeURIComponent(emailSubject) +
-        '&body=' + encodeURIComponent(emailBody);
 
       const button = contactForm.querySelector('button[type="submit"]');
       button.disabled = true;
@@ -260,11 +278,9 @@
         nodes.push(el('p', '', 'Thank you, ' + name.split(' ')[0] + '. Our team will reply to ' + email + '.'));
       } else {
         nodes.push(el('h3', '', 'Your email is ready'));
-        nodes.push(el('p', '', 'Press the button to open it in your email app and send it to ' + STORE_EMAIL + '.'));
+        nodes.push(el('p', '', 'Choose how to send it to us: by email (' + STORE_EMAIL + ') or by WhatsApp.'));
         nodes.push(el('pre', 'email-preview', 'To: ' + STORE_EMAIL + '\nSubject: ' + emailSubject + '\n\n' + emailBody));
-        const open = el('a', 'btn', 'Open in my email app');
-        open.href = mailto;
-        nodes.push(open);
+        addSendLinks(emailSubject, emailBody, nodes);
         const copy = el('button', 'btn', 'Copy message');
         copy.type = 'button';
         copy.addEventListener('click', () => {
