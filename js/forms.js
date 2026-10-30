@@ -8,13 +8,14 @@
   'use strict';
 
   /* ===== YOUR DETAILS - change these two lines ===== */
-  const STORE_EMAIL = 'ST10523298@rcconnect.edu.za';      // the email address that receives messages
+  const STORE_EMAIL = 'ghebrululeya67@gmail.com';      // the email address that receives messages
   const WHATSAPP_NUMBER = '27814186421';         // your WhatsApp number: country code + number, no + or spaces (082 123 4567 becomes 27821234567)
+  
   /* ================================================== */
 
   /* Optional AJAX: paste a Formspree (or similar) endpoint here to send the
      form in the background. Leave it empty to use the built-in response / email. */
-  const FORM_ENDPOINT = '';
+  const FORM_ENDPOINT = 'https://formspree.io/f/xrpplnll';
 
   const CATEGORY_BY_VALUE = {
     'tv': 'Televisions',
@@ -208,7 +209,7 @@
       const button = enquiryForm.querySelector('button[type="submit"]');
       button.disabled = true;
       button.textContent = 'Sending...';
-      const net = await sendToEndpoint({ form: 'enquiry', data: data });
+      const net = await sendToEndpoint(Object.assign({ form: 'enquiry' }, data));
       button.disabled = false;
       button.textContent = 'Submit Enquiry';
 
