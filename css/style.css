@@ -523,3 +523,120 @@ main section {
 }
 .form-success.show { display: block; }
 .form-success a { color: var(--color-white); text-decoration: underline; }
+
+/* =========================================================
+   PART 3 ADDITIONS
+   Paste at the very BOTTOM of css/style.css.
+   First delete the old block that starts with
+   "PART 3 ADDITIONS - paste at the very bottom" (your own attempt).
+   ========================================================= */
+
+/* ---- Accessibility: keyboard focus and skip link ---- */
+:focus-visible { outline: 3px solid var(--color-dark-pink); outline-offset: 2px; }
+.skip-link { position: absolute; left: 0.5rem; top: -4rem; background: var(--color-primary); color: var(--color-white); padding: 0.6em 1em; border-radius: 4px; z-index: 2000; }
+.skip-link:focus { top: 0.5rem; }
+.no-scroll { overflow: hidden; }
+button.btn { font-family: inherit; font-size: 1em; cursor: pointer; }
+.category-card h3 a { color: inherit; }
+.category-card h3 a:hover { text-decoration: underline; }
+
+/* ---- Animation: sections fade in (only when JavaScript is on) ---- */
+.js .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.js .reveal.visible { opacity: 1; transform: none; }
+.hero-content { animation: heroIn 0.8s ease both; }
+@keyframes heroIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-content { animation: none; }
+  * { scroll-behavior: auto !important; }
+}
+
+/* ---- Product search / filter / sort ---- */
+.product-controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.75em; margin: 1.5em 0 1em; }
+.product-controls input[type="search"], .product-controls select {
+  padding: 0.65em; border: 1px solid var(--color-primary); border-radius: 4px;
+  font-family: 'Roboto', sans-serif; background: var(--color-white); min-width: 180px;
+}
+.check-label { display: flex; align-items: center; gap: 0.4em; font-weight: 700; }
+.product-controls .btn { margin: 0; }
+.result-count { font-weight: 700; }
+.no-results { margin: 1em auto; max-width: 500px; padding: 1em; background: var(--color-white); border-radius: 8px; }
+.no-results[hidden] { display: none; }
+
+/* ---- Product cards ---- */
+.product-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5em; margin: 1.5em 0; }
+.product-grid .product-card { flex: 1 1 240px; max-width: 280px; margin: 0; transition: transform 0.2s, box-shadow 0.2s; }
+.product-grid .product-card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(136, 14, 79, 0.2); }
+.product-grid .product-card img { width: 100%; height: 160px; }
+.product-category { font-size: 0.9em; }
+.stock { font-size: 0.9em; font-weight: 700; }
+.stock-in { color: #1b6e3a; }
+.stock-low { color: #9a5b00; }
+.stock-out { color: #b3261e; }
+
+/* ---- Quick-view modal ---- */
+.modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); display: flex; align-items: center; justify-content: center; padding: 1em; z-index: 1000; }
+.modal[hidden] { display: none; }
+.modal-dialog { position: relative; background: var(--color-white); width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; border-radius: 8px; padding: 1.5em; animation: heroIn 0.25s ease both; }
+.modal-dialog img { width: 100%; max-height: 220px; object-fit: cover; border-radius: 8px; margin-bottom: 1em; }
+.modal-close { position: absolute; top: 0.4rem; right: 0.8rem; background: none; border: none; font-size: 2rem; line-height: 1; color: var(--color-secondary); cursor: pointer; }
+.modal-features { margin: 0.75em 0; }
+.modal-features li::before { content: '\2713\00a0'; color: var(--color-primary); font-weight: 700; }
+
+/* ---- Accordion (FAQ) ---- */
+.faq-list { max-width: 700px; margin: 1.5em auto 0; text-align: left; }
+.faq-item { background: var(--color-white); border-radius: 8px; margin-bottom: 0.75em; overflow: hidden; }
+.faq-item h3 { margin: 0; }
+.faq-question {
+  width: 100%; padding: 1em 1.25em; border: none; background: none; cursor: pointer;
+  font: 700 1em 'Montserrat', sans-serif; color: var(--color-primary); text-align: left;
+}
+.faq-question::after { content: '+'; float: right; }
+.faq-question[aria-expanded="true"]::after { content: '\2212'; }
+.faq-question:hover, .faq-question:focus { background: var(--color-neutral-light); }
+.js .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; }
+.js .faq-item.open .faq-answer { grid-template-rows: 1fr; }
+.faq-answer > div { overflow: hidden; }
+.faq-answer p { padding: 0 1.25em 1em; }
+.js .faq-item:not(.open) .faq-answer p { padding-bottom: 0; }
+
+/* ---- Gallery and lightbox ---- */
+.gallery-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1em; margin-top: 1.5em; }
+.gallery-item { border: none; background: none; padding: 0; cursor: zoom-in; border-radius: 8px; overflow: hidden; }
+.gallery-item img { width: 220px; height: 160px; object-fit: cover; transition: transform 0.25s; }
+.gallery-item:hover img { transform: scale(1.06); }
+.lightbox { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.88); display: none; align-items: center; justify-content: center; gap: 0.5em; z-index: 1000; padding: 1em; }
+.lightbox.open { display: flex; }
+.lightbox figure { max-width: 80%; text-align: center; }
+.lightbox img { max-width: 100%; max-height: 75vh; border-radius: 8px; }
+.lightbox figcaption { color: var(--color-white); margin-top: 0.75em; }
+.lightbox-close { position: absolute; top: 0.75rem; right: 1.25rem; background: none; border: none; color: #fff; font-size: 2.5rem; cursor: pointer; }
+.lightbox-nav { background: rgba(255, 255, 255, 0.15); border: none; color: #fff; font-size: 2.5rem; width: 3rem; height: 3rem; border-radius: 50%; cursor: pointer; }
+.lightbox-nav:hover { background: var(--color-primary); }
+
+/* ---- Map (contact page) ---- */
+.map-frame { display: block; width: 100%; max-width: 900px; height: 420px; margin: 1.5em auto 0; border: 2px solid var(--color-primary); border-radius: 8px; }
+.map-buttons { margin-top: 1em; }
+.map-buttons .btn[aria-pressed="true"] { background-color: var(--color-primary); color: var(--color-white); }
+
+/* ---- Forms: red error messages, character counter and response box ---- */
+.field-error { color: #b3261e; font-size: 0.9em; font-weight: 700; min-height: 1.2em; }
+.form-section input.invalid, .form-section select.invalid, .form-section textarea.invalid { border: 2px solid #b3261e; background: #fff5f5; }
+.char-count { font-size: 0.8em; text-align: right; color: var(--color-secondary); }
+.form-success { display: none; background: var(--color-dark-pink); color: var(--color-white); padding: 1.25em; border-radius: 8px; margin-top: 1em; text-align: center; }
+.form-success.show { display: block; }
+.form-success h3, .form-success h4 { color: var(--color-white); }
+.form-success a { color: var(--color-white); text-decoration: underline; }
+.form-success .btn { background: var(--color-white); color: var(--color-primary); border: none; text-decoration: none; margin: 0.5em 0.25em 0; width: auto; display: inline-block; }
+.response-list { margin: 0.75em 0; }
+.response-list li { margin-bottom: 0.4em; }
+.email-preview { background: rgba(0, 0, 0, 0.25); padding: 0.75em; border-radius: 4px; text-align: left; white-space: pre-wrap; word-wrap: break-word; font-size: 0.85em; margin: 0.75em 0; }
+
+@media (max-width: 480px) {
+  .product-controls > * { width: 100%; }
+  .lightbox figure { max-width: 100%; }
+  .lightbox-nav { position: absolute; bottom: 1rem; }
+  .lightbox-prev { left: 1rem; }
+  .lightbox-next { right: 1rem; }
+  .form-success .btn { width: 100%; margin: 0.5em 0 0; }
+}

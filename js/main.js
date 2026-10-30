@@ -1,7 +1,7 @@
 /* =========================================================
    main.js - site-wide interactivity
    1. Scroll-reveal animation   2. FAQ accordion
-   3. Gallery lightbox          4. Interactive Leaflet map
+   3. Gallery lightbox          4. Google Maps store switcher
    Patterns adapted from MDN Web Docs (n.d.) and the W3C
    WAI-ARIA Authoring Practices (n.d.) - see README references.
    ========================================================= */
@@ -100,59 +100,16 @@
     });
   }
 
-  /* ---------- 4. Interactive map (contact page) - Leaflet + OpenStreetMap ---------- */
-  const mapEl = document.getElementById('map');
-  if (mapEl) {
-    if (typeof L === 'undefined') {
-      mapEl.textContent = 'The map could not be loaded. Please use the addresses listed above.';
-      return;
-    }
-
-    const stores = [
-      { name: 'LG Store - Sandton',   address: '123 Rivonia Road, Sandton, Johannesburg, 2196', tel: '011 000 0000', lat: -26.1076, lng: 28.0567 },
-      { name: 'LG Store - Cape Town', address: '45 Bree Street, Cape Town City Centre, 8001',   tel: '021 000 0000', lat: -33.9230, lng: 18.4210 }
-    ];
-
-    const map = L.map('map', { scrollWheelZoom: false });   // wheel zoom off so the page can still scroll
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    const markers = stores.map(store => {
-      /* The popup is built from DOM elements, so no HTML is injected from strings */
-      const popup = document.createElement('div');
-      const title = document.createElement('strong');
-      title.textContent = store.name;
-      const addr = document.createElement('p');
-      addr.textContent = store.address;
-      const tel = document.createElement('p');
-      tel.textContent = 'Tel: ' + store.tel;
-      const dir = document.createElement('a');
-      dir.href = 'https://www.openstreetmap.org/directions?to=' + store.lat + '%2C' + store.lng;
-      dir.textContent = 'Get directions';
-      dir.target = '_blank';
-      dir.rel = 'noopener noreferrer';
-      popup.append(title, addr, tel, dir);
-
-      return L.marker([store.lat, store.lng], { title: store.name, alt: store.name }).addTo(map).bindPopup(popup);
-    });
-
-    const bounds = L.latLngBounds(stores.map(s => [s.lat, s.lng]));
-    map.fitBounds(bounds, { padding: [40, 40] });          // starts by showing both stores
-
-    document.querySelectorAll('.map-buttons [data-store]').forEach(button => {
+  /* ---------- 4. Google Maps embed (contact page) ---------- */
+  /* Each button holds the embed link of one store in its data-map attribute */
+  const mapFrame = document.getElementById('map-frame');
+  if (mapFrame) {
+    const mapButtons = document.querySelectorAll('.map-buttons [data-map]');
+    mapButtons.forEach(button => {
       button.addEventListener('click', () => {
-        const target = button.dataset.store;
-        if (target === 'all') {
-          map.closePopup();
-          map.flyToBounds(bounds, { padding: [40, 40] });
-        } else {
-          const store = stores[Number(target)];
-          map.flyTo([store.lat, store.lng], 15);
-          markers[Number(target)].openPopup();
-        }
-        mapEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        mapFrame.src = button.dataset.map;                         // load the chosen store
+        mapFrame.title = 'Map showing ' + button.dataset.name;     // keeps the title accurate for screen readers
+        mapButtons.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
       });
     });
   }

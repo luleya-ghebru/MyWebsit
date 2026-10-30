@@ -8,11 +8,11 @@
 
 /* Category photos - one image per category (file names are SEO-friendly) */
 const CATEGORY_IMAGES = {
-  'Televisions':         { src: 'images/lg-oled-television.jpg',   alt: 'LG televisions on display in the showroom' },
-  'Fridges & Freezers':  { src: 'images/lg-fridge-freezer.webp',   alt: 'LG fridge freezers on display in the showroom' },
-  'Washing Machines':    { src: 'images/lg-washing-machine.webp',  alt: 'LG washing machines on display in the showroom' },
-  'Air Conditioning':    { src: 'images/lg-air-conditioner.png',   alt: 'LG split air conditioning unit' },
-  'Small Appliances':    { src: 'images/lg-kitchen-appliances.jpg', alt: 'Small LG kitchen and home appliances' }
+  'Televisions':         { src: 'assets/tv.jpg',   alt: 'LG televisions on display in the showroom' },
+  'Fridges & Freezers':  { src: 'assets/fridge.webp',   alt: 'LG fridge freezers on display in the showroom' },
+  'Washing Machines':    { src: 'assets/washing ma.webp',  alt: 'LG washing machines on display in the showroom' },
+  'Air Conditioning':    { src: 'assets/air condition.png',   alt: 'LG split air conditioning unit' },
+  'Small Appliances':    { src: 'assets/Small LG kitchen and home appliances on a counter.jpg', alt: 'Small LG kitchen and home appliances' }
 };
 
 const CATEGORIES = Object.keys(CATEGORY_IMAGES);
