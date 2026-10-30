@@ -286,6 +286,110 @@ lg-store/
 a description detailed enough for the lecturer to follow your progress.)*
 
 ---
+---
+
+# Part 3: Enhancing Functionality and SEO
+
+**Live website:** https://guileless-monstera-308321.netlify.app
+**Deployed on:** Netlify (free plan)
+
+## Part 3 Overview
+
+In Part 3, I added JavaScript interactivity, search engine optimisation (SEO), working forms with validation, and deployed the website. All JavaScript is in the `js` folder (`products.js`, `main.js`, `forms.js`).
+
+## 1. Feedback from Part 2
+
+[List each point of feedback your lecturer gave you and what you changed. Example: "Feedback: navigation menu was not user-friendly on mobile. Change: ..."]
+
+## 2. Functionality
+
+### 2.1 Interactive elements
+- **Accordion (FAQ):** The Products page has an FAQ section where each question opens and closes its answer. The button state is stored in `aria-expanded` so screen readers announce it (W3C, n.d.).
+- **Modal (product quick view):** The "Quick View" button on each product opens a pop-up with the product's picture, price, features and stock. It closes with the × button, the Esc key or a click outside the pop-up.
+- **Scroll animations:** Sections fade in as they come into view, using the Intersection Observer API (MDN Web Docs, n.d.a). Animations are switched off for visitors who prefer reduced motion.
+- **Gallery with lightbox:** The About page has a photo gallery. Clicking any picture on the website opens it larger with an × button. Gallery pictures can be browsed with arrows or the arrow keys.
+
+### 2.2 Interactive map
+The Contact page has an embedded Google Maps map (Google, n.d.) with two store locations (Sandton and Cape Town). Two buttons switch the map between the stores.
+
+### 2.3 Dynamic content and search
+- The product list is stored in `js/products.js` and the product cards are created by JavaScript, so the HTML does not contain them.
+- The Products page has a **search box**, a **category filter**, a **sort option** (name, price low to high, price high to low), an **in-stock only** option and a **reset** button.
+- The Home page shows featured products from the same list. The category cards on the Home page link to the filtered Products page.
+
+## 3. Search Engine Optimisation (SEO)
+
+### 3.1 On-page SEO
+- Every page has a unique `<title>`, meta description and meta keywords.
+- Each page has one `<h1>` and headings in order (`h1`, `h2`, `h3`).
+- Images have descriptive alt text and descriptive file names.
+- Pages link to each other through the navigation, footer and call-to-action buttons.
+- The website is mobile-friendly (responsive design from Part 2).
+- Canonical links and Open Graph tags are on every page (Open Graph protocol, n.d.).
+- **Local SEO:** The Contact page has structured data (JSON-LD) for both stores with address, phone number, opening hours and map coordinates (Schema.org, n.d.).
+
+### 3.2 Off-page SEO (plan)
+- **Backlinks:** [Describe 2 or 3 realistic ideas, for example: listing the store on local business directories, asking LG South Africa to list the store as a retailer, asking local blogs to link to the store.]
+- **Social media:** [Describe your plan, for example: sharing new products and specials on Facebook and Instagram with a link to the website.]
+- **Local SEO:** Store addresses and opening hours are on the Contact page, and a Google Business Profile for each store is planned.
+
+### 3.3 Additional requests
+- **robots.txt:** Allows search engines to index the website and points to the sitemap (Google Search Central, n.d.a).
+- **sitemap.xml:** Lists all five pages (Sitemaps.org, n.d.; Google Search Central, n.d.b).
+- **Page speed:** Scripts load with `defer`, images below the top of the page use `loading="lazy"`, fonts use `display=swap`, and fonts are preconnected.
+- **Security:** User input is never inserted as HTML (text is added with `textContent`), form fields have length limits, external links use `rel="noopener noreferrer"`, and the website is served over HTTPS by Netlify.
+
+## 4. Form Functionality and Validation
+
+### 4.1 Enquiry form (`enquiry.html`)
+- Fields: full name, email, phone, enquiry type, product category, quantity, message and preferred contact method.
+- JavaScript validation checks every field, shows a red error message under the field and puts the cursor on the first mistake. Rules: name 2 to 60 letters, valid email format, South African phone number, a selected option, quantity from 1 to 50, message 10 to 500 characters.
+- After a valid submission, the form shows a **response about cost and availability**. It uses the prices and stock from the product list, and gives installation fees, call-out fees and the next available date for installation and repair bookings.
+- The form is also sent in the background (AJAX) to Formspree (Formspree, n.d.). The visitor can also send the enquiry by email or WhatsApp with the message already typed.
+
+### 4.2 Contact form (`contact.html`)
+- Fields: full name, email, phone (optional), message type and message.
+- It uses the same validation with red error messages.
+- After a valid submission, the message is sent to the store through Formspree (AJAX). If that fails, the visitor sees the compiled email with **Send by email**, **Send by WhatsApp** and **Copy message** buttons, with the store's address filled in.
+
+## 5. Deployment
+
+1. The project was pushed to the GitHub repository.
+2. The repository was connected to Netlify (Netlify, n.d.), which publishes the website automatically after every push.
+3. All pages were opened on the live website and tested: [list the browsers and devices you tested].
+
+## 6. Part 3 Changelog
+
+| Area | Change | Files |
+|---|---|---|
+| Part 2 feedback | [Describe each fix] | [files] |
+| Products | Replaced the static product list with a JavaScript product list, with search, filter, sort and in-stock options | `js/products.js`, `pages/products.html` |
+| Products | Added a quick-view modal for each product | `js/products.js`, `css/style.css` |
+| Home | Added featured products created by JavaScript and links from category cards to filtered results | `index.html`, `js/products.js` |
+| Interactivity | Added FAQ accordion, scroll animations and the click-to-enlarge image viewer | `js/main.js`, `css/style.css` |
+| About | Added a photo gallery | `pages/about.html` |
+| Contact | Added Google Maps with a store switcher | `pages/contact.html`, `js/main.js` |
+| Forms | Added JavaScript validation, red error messages, a character counter and the cost and availability response | `js/forms.js`, `css/style.css` |
+| Forms | Connected Formspree and added Send by email and Send by WhatsApp options | `js/forms.js` |
+| SEO | Added titles, descriptions, keywords, canonical links, Open Graph tags and local business structured data | all HTML pages |
+| SEO | Added `robots.txt` and `sitemap.xml` | project root |
+| Accessibility | Added a skip link, keyboard focus styles and ARIA labels | all HTML pages, `css/style.css` |
+| Deployment | Deployed the website on Netlify | n/a |
+
+## 7. Part 3 References
+
+Add these to your reference list (and tick off each link before you submit):
+
+- Formspree (n.d.) *Formspree: form backend for websites*. Available at: https://formspree.io (Accessed: [date]).
+- Google (n.d.) *Google Maps*. Available at: https://www.google.com/maps (Accessed: [date]).
+- Google Search Central (n.d.a) *Introduction to robots.txt*. Available at: https://developers.google.com/search/docs/crawling-indexing/robots/intro (Accessed: [date]).
+- Google Search Central (n.d.b) *Learn about sitemaps*. Available at: https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview (Accessed: [date]).
+- MDN Web Docs (n.d.a) *Intersection Observer API*. Available at: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API (Accessed: [date]).
+- Netlify (n.d.) *Netlify: deploy your website*. Available at: https://www.netlify.com (Accessed: [date]).
+- Open Graph protocol (n.d.) *The Open Graph protocol*. Available at: https://ogp.me (Accessed: [date]).
+- Schema.org (n.d.) *ElectronicsStore*. Available at: https://schema.org/ElectronicsStore (Accessed: [date]).
+- Sitemaps.org (n.d.) *Sitemaps XML format*. Available at: https://www.sitemaps.org/protocol.html (Accessed: [date]).
+- W3C (n.d.) *Dialog (modal) pattern*. Available at: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/ (Accessed: [date]).
 
 ## References
 
