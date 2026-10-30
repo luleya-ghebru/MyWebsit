@@ -98,7 +98,7 @@
 
     if (galleryBtn) {
       const buttons = Array.from(document.querySelectorAll('.gallery-item'));
-      const list = buttons.map(b => ({ src: b.dataset.full, alt: b.querySelector('img').alt, caption: b.dataset.caption }));
+      const list = buttons.map(b => ({ src: b.querySelector('img').currentSrc || b.querySelector('img').src, alt: b.querySelector('img').alt, caption: b.dataset.caption }));   // uses the picture's own path
       openBox(list, buttons.indexOf(galleryBtn), galleryBtn);
     } else {
       openBox([{ src: img.currentSrc || img.src, alt: img.alt, caption: img.alt }], 0, img);
